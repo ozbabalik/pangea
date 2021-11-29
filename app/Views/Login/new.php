@@ -4,47 +4,48 @@
 
 <?= $this->section('content') ?>
 
-<h1 class="title"><?= lang('Login.title') ?></h1>
-
-<div class="container">
-
+<div class="container col-md-10">
+  <div class="card">
+    <h1 class="card-header"><?= lang('Login.title') ?></h1>
+    <div class="card-body">
     <?= form_open("/$locale/login/create") ?>
 
-        <div class="field">
-            <label class="label" for="email"><?= lang('Login.email') ?></label>
-            <input class="input" type="text" name="email" id="email" value="<?= old('email') ?>">
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" for="email"><?= lang('Login.email') ?></label>
+            <div class="col-sm-9">
+            <input class="form-control" type="text" name="email" id="email" value="<?= old('email') ?>">
+          </div>
         </div>
-        
-        <div class="field">
-            <label class="label" for="password"><?= lang('Login.password') ?></label>
-            <input class="input" type="password" name="password">
+
+        <div class="row mb-3">
+            <label class="col-sm-3 col-form-label" for="password"><?= lang('Login.password') ?></label>
+            <div class="col-sm-9">
+            <input class="form-control" type="password" name="password">
+          </div>
         </div>
-        
-        <div class="field">
-            <label class="checkbox" for="remember_me">
-                <input type="checkbox" id="remember_me" name="remember_me"
+
+        <div class="row mb-3">
+            <label class="form-check-label" for="remember_me">
+                <input class="form-check-input" type="checkbox" id="remember_me" name="remember_me"
                     <?php if (old('remember_me')): ?>checked<?php endif; ?>> <?= lang('Login.remember_me') ?>
             </label>
         </div>
-        
-        <div class="field is-grouped">
+
+        <div class="row mb-3">
             <div class="control">
-                <button class="button is-primary"><?= lang('Login.log_in') ?></button>
+                <button type="submit" class="btn btn-outline-success"><?= lang('Login.log_in') ?></button>
+
+                <a href="<?= site_url("/$locale/signup") ?>" class="btn btn-outline-success">
+                  Neue Registrierung
+                </a>
             </div>
 
-            <a href="<?= site_url("/$locale/password/forgot") ?>"><?= lang('Login.forgot_password') ?></a>
+            <a href="<?= site_url("/$locale/password/forgot") ?>" style="color:#610B0B;"><?= lang('Login.forgot_password') ?></a>
         </div>
 
     </form>
-
+    </div>
+  </div>
 </div>
 
 <?= $this->endSection() ?>
-
-
-
-
-
-
-
-

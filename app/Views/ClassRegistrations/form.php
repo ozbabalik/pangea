@@ -1,7 +1,9 @@
-<div class="field">
-    <label class="label" for="class"><?= lang('ClassRegistrations.class') ?></label>
+<div class="row mb-3">
+    <label class="col-sm-6 col-form-label" for="class">Schulstufe</label>
+    <div class="col-sm-6">
   <?php
   $classes = [
+    ''  => '--Klasse wählen--',
     '3'  => lang('3. grade'),
     '4'  => lang('4. grade'),
     '5'  => lang('5. grade'),
@@ -20,18 +22,22 @@
 
           <!--?}?>
          </select> -->
-
+</div>
 </div>
 
 
-<div class="field">
-    <label class="label" for="class_description"><?= lang('ClassRegistrations.class_description') ?></label>
+  <div class="row mb-3">
+    <label class="col-sm-6 col-form-label" for="class_description">Beschreibung (z.B: 3B, 4A usw...)</label>
+    <div class="col-sm-6">
     <input class="input" type="text" name="class_description" id="class_description"
            value="<?= old('class_description', esc($classRegistration->class_description)) ?>">
+         </div>
 </div>
 
-<div class="field">
-    <label class="label" for="number_of_students"><?= lang('ClassRegistrations.number_of_students') ?></label>
+<div class="row mb-3">
+    <label class="col-sm-6 col-form-label" for="number_of_students"><?= lang('Anzahl der SchülerInnen') ?></label>
+    <div class="col-sm-6">
     <input class="input" type="text" name="number_of_students" id="number_of_students"
            value="<?= old('number_of_students', esc($classRegistration->number_of_students)) ?>">
+         </div>
 </div>

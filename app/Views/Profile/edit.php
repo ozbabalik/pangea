@@ -6,17 +6,17 @@
 
 <!--h1 class="title"><!?= lang('Profile.title_edit') ?></h1-->
 
-<?php if (session()->has('errors')): ?>
-    <ul>
-        <?php foreach(session('errors') as $error): ?>
-            <li><?= $error ?></li>
-        <?php endforeach; ?>
-    </ul>
-<?php endif ?>
 
 
+<?php $currentPage='profile' ?>
 <div class="container">
-    <div class="col-10">
+      <?php if (session()->has('errors')): ?>
+        <div class="alert alert-danger" >
+              <?php foreach(session('errors') as $error): ?>
+                  <div role="alert"><?= $error ?></div>
+              <?php endforeach; ?>
+        </div>
+      <?php endif ?>
         <div class="card">
         <h1 class="card-header"><?= lang('Profile.title_edit') ?></h1>
 
@@ -60,22 +60,22 @@
 
               <div class="form-group row">
                 <div class="col-md-6">
-                  <!--label class="form-label" for="teacher_phone"><!?= lang('Signup.teacher_phone') ?></label-->
+                  <label class="form-label" for="teacher_phone"><?= lang('Signup.teacher_phone') ?></label>
                       <input class="form-control" type="text" name="teacher_phone" id="teacher_phone" value="<?= old('teacher_phone', esc($user->teacher_phone)) ?>" placeholder="<?= lang('Signup.teacher_phone') ?>" required>
                 </div>
                 <div class="col-md-6">
-                  <!--label class="form-label" for="school_phone"><!?= lang('Signup.school_phone') ?></label-->
+                  <label class="form-label" for="school_phone"><?= lang('Signup.school_phone') ?></label>
                       <input class="form-control" type="text" name="school_phone" id="school_phone" value="<?= old('school_phone', esc($user->school_phone)) ?>" placeholder="<?= lang('Signup.school_phone') ?>" required>
                 </div>
               </div>
 
               <div class="form-group row">
                 <div class="col-md-6">
-                  <!--label class="form-label" for="school_name"><!?= lang('Signup.school_name') ?></label-->
+                  <label class="form-label" for="school_name"><?= lang('Signup.school_name') ?></label>
                       <input class="form-control" type="text" name="school_name" id="school_name" value="<?= old('school_name', esc($user->school_name)) ?>" placeholder="<?= lang('Signup.school_name') ?>" required>
                 </div>
                 <div class="col-md-3">
-                  <!--label class="form-label" for="school_code"><!?= lang('Signup.school_code') ?></label-->
+                  <label class="form-label" for="school_code"><?= lang('Signup.school_code') ?></label>
                       <input class="form-control" type="text" name="school_code" id="school_code" value="<?= old('school_code', esc($user->school_code)) ?>" placeholder="<?= lang('Signup.school_code') ?>" required>
                 </div>
 
@@ -83,36 +83,36 @@
                   <?php $schoolTypes=array (''=> lang('Schulform'), 'NMS'  => 'NMS', 'VMS' => 'VMS',
                                         'KMS' => 'KMS', 'AHS' => 'AHS', 'HTL' => 'HTL', 'HAK' => 'HAK', 'BAKIP' => 'BAKIP',
                                         'HLWB' => 'HLWB', 'HBLA' => 'HBLA', 'VS' => 'VS', 'HS' => 'HS', 'Andere'=> 'Andere')?>
-                  <!--label class="form-label" for="school_type"><!?= lang('Signup.school_type') ?></label-->
+                  <label class="form-label" for="school_type"><?= lang('Signup.school_type') ?></label>
                       <?=form_dropdown('school_type', $schoolTypes, esc($user->school_type) , 'class="form-select", required="required"');?>
                 </div>
               </div>
 
               <div class="form-group row">
                 <div class="col-md-9">
-                  <!--label for="school_street" class="form-label"><!?= lang('Signup.school_street') ?></label-->
+                  <label for="school_street" class="form-label"><?= lang('Signup.school_street') ?></label>
                   <input class="form-control" type="text" id="school_street" name="school_street" value="<?= old('school_street', esc($user->school_street)) ?>" placeholder="<?= lang('Signup.school_street') ?>" required>
                 </div>
                 <div class="col-md-3">
-                  <!--label for="school_house_nr" class="form-label"><!?= lang('Signup.houseNr') ?></label-->
+                  <label for="school_house_nr" class="form-label"><?= lang('Signup.houseNr') ?></label>
                   <input class="form-control" type="text" id="school_house_nr" name="school_house_nr" value="<?= old('school_house_nr', esc($user->school_house_nr)) ?>" placeholder="<?= lang('Signup.houseNr') ?>" required>
                 </div>
               </div>
 
               <div class="form-group row">
                 <div class="col-md-3">
-                  <!--label for="zip" class="form-label"><!?= lang('Signup.zip') ?></label-->
+                  <label for="zip" class="form-label"><?= lang('Signup.zip') ?></label>
                   <input class="form-control" type="text" id="zip" name="school_zip" value="<?= old('zip', esc($user->school_zip)) ?>" placeholder="<?= lang('Signup.zip') ?>" required>
                 </div>
                 <div class="col-md-4">
-                  <!--label for="city" class="form-label"><!?= lang('Signup.city') ?></label-->
+                  <label for="city" class="form-label"><?= lang('Signup.city') ?></label>
                   <input class="form-control" type="text" id="city" name="school_city" value="<?= old('city', esc($user->school_city)) ?>" placeholder="<?= lang('Signup.city') ?>" required>
                 </div>
                 <div class="col-md-5">
                   <?php $states=array (''=> lang('Bundesland auswählen'), 'burgenland'=>'Burgenland',
                                                   'kaernten' => 'Kärnten', 'niederoesterreich' => 'Niederösterreich', 'oberoesterreich' => 'Oberösterreich',
                                                   'salzburg' => 'Salzburg', 'steiermark' => 'Steiermark', 'tirol' => 'Tirol', 'vorarlberg' => 'Vorarlberg', 'wien' => 'Wien')?>
-                  <!--label  for="state" class="form-label"><!?=lang('Signup.state')?></label-->
+                  <label  for="state" class="form-label"><?=lang('Signup.state')?></label>
                   <?=form_dropdown('school_state', $states, esc($user->school_state) , 'class="form-select", required="required"');?>
                 </div>
               </div>
@@ -126,8 +126,9 @@
 
             <?=form_close();?>
 
+            </div>
           </div>
-        </div>
-      </div>
-</div>
+  </div>
+
+
 <?= $this->endSection() ?>

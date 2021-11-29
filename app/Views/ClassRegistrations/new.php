@@ -4,34 +4,40 @@
 
 <?= $this->section('content') ?>
 
-<h1 class="title"><?= lang('ClassRegistrations.new_classRegistration') ?></h1>
-
-<?php if (session()->has('errors')): ?>
-    <ul>
-        <?php foreach(session('errors') as $error): ?>
-            <li><?= $error ?></li>
-        <?php endforeach; ?>
-    </ul>
-<?php endif ?>
+<?php $currentPage='classRegistration' ?>
 
 <div class="container">
 
-    <?= form_open("/classRegistrations/create") ?>
+  <div class="col-12">
+      <div class="card">
+        <h3 class="card-header">Klassenanmeldung</h3>
 
-        <?= $this->include('ClassRegistrations/form') ?>
+        <div clas="row">
+          <?php if (session()->has('errors')): ?>
+              <ul>
+                  <?php foreach(session('errors') as $error): ?>
+                      <li><?= $error ?></li>
+                  <?php endforeach; ?>
+              </ul>
+          <?php endif ?>
 
-        <div class="field is-grouped">
-            <div class="control">
-                <button class="button is-primary"><?= lang('ClassRegistrations.save') ?></button>
-            </div>
-
-            <div class="control">
-                <a class="button" href="<?= site_url("/classRegistrations") ?>"><?= lang('ClassRegistrations.cancel') ?></a>
-            </div>
         </div>
+        <div class="card-body">
+        <?= form_open("/classRegistrations/create") ?>
 
-    </form>
+            <?= $this->include('ClassRegistrations/form') ?>
 
+            <div class="form-group row">
+              <div class="col-md-12">
+                    <button type="submit" class="btn btn-outline-success">Speichern</button>
+                    <a class="btn btn-outline-secondary" href="<?= site_url("/classRegistrations") ?>">Abbrechen</a>
+
+              </div>
+            </div>
+
+        <?=form_close();?>
+    </div>
+  </div>
 </div>
 
 <?= $this->endSection() ?>

@@ -4,49 +4,65 @@
 
 <?= $this->section("content") ?>
 
-    <h1 class="title"><?= lang('ClassRegistrations.title') ?></h1>
+<?php $currentPage='classRegistration' ?>
 
-    <a class="button" href="<?= site_url("/classRegistrations/new") ?>"><?= lang('ClassRegistrations.new') ?></a>
 
-    <div>
-        <label for="query"><?= lang('ClassRegistrations.search') ?></label>
-        <input name="query" id="query">
+
+          <div class="card">
+            <h1 class="card-header">Ihre Klassen</h1>
+
+            <div class="card-body">
+
+              <div class="pb-2">
+                  <a type="button" class="btn btn-outline-primary" href="<?= site_url("/classRegistrations/new") ?>">Neue Klasse</a>
+                  <label for="query">Suchen</label>
+                  <input name="query" id="query">
+              </div>
+
+              <?php if ($classRegistrations): ?>
+
+                <?php $totalStudents=0?>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="text-align: center; vertical-align: middle;">Klasse</th>
+                            <th style="text-align: center; vertical-align: middle;">Beschreibung</th>
+                            <th style="text-align: center; vertical-align: middle;">Anzahl d. SchülerInen</th>
+                            <th style="text-align: center; vertical-align: middle;"></th>
+                            <th style="text-align: center; vertical-align: middle;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($classRegistrations as $classRegistration): ?>
+
+                            <tr>
+                                <td style="text-align: center; vertical-align: middle;"><?= esc($classRegistration->class) ?></td>
+                                <td style="text-align: center; vertical-align: middle;"><?= esc($classRegistration->class_description) ?></td>
+                                <td style="text-align: center; vertical-align: middle;"><?= $classRegistration->number_of_students ?></td>
+                                <td style="text-align: center; vertical-align: middle;"><a class="btn btn-outline-primary" href="<?= site_url("/classRegistrations/edit/" . $classRegistration->id) ?>">
+                                    Editieren
+                                </a></td>
+                                <td style="text-align: center; vertical-align: middle;"><a class="btn btn-outline-danger" href="<?= site_url("/classRegistrations/delete/" . $classRegistration->id) ?>">
+                                    Löschen
+                                </a></td>
+                            </tr>
+                            <?php $totalStudents= $totalStudents+$classRegistration->number_of_students ?>
+                        <?php endforeach; ?>
+                        <td colspan="2">Gesamtanzahl d. SchülerInnen</td>
+                        <td style="text-align: center; vertical-align: middle;"><?= $totalStudents ?></td>
+                        <th style="text-align: center; vertical-align: middle;"></th>
+                        <th style="text-align: center; vertical-align: middle;"></th>
+
+                    </tbody>
+                </table>
+
+
+            <?= $pager->simplelinks() ?>
+
+        <?php else: ?>
+        </div>
+
     </div>
-
-    <?php if ($classRegistrations): ?>
-      <?php $totalStudents=0?>
-      <table class="table">
-          <thead>
-              <tr>
-                  <th style="text-align: center; vertical-align: middle;"><?= lang('ClassRegistrations.class') ?></th>
-                  <th style="text-align: center; vertical-align: middle;"><?= lang('ClassRegistrations.class_description') ?></th>
-                  <th style="text-align: center; vertical-align: middle;"><?= lang('ClassRegistrations.number_of_students') ?></th>
-                  <th style="text-align: center; vertical-align: middle;"></th>
-              </tr>
-          </thead>
-          <tbody>
-              <?php foreach($classRegistrations as $classRegistration): ?>
-
-                  <tr>
-                      <td style="text-align: center; vertical-align: middle;"><?= esc($classRegistration->class) ?></td>
-                      <td style="text-align: center; vertical-align: middle;"><?= esc($classRegistration->class_description) ?></td>
-                      <td style="text-align: center; vertical-align: middle;"><?= $classRegistration->number_of_students ?></td>
-                      <td style="text-align: center; vertical-align: middle;"><a href="<?= site_url("/classRegistrations/edit/" . $classRegistration->id) ?>">
-                          <?= lang("ClassRegistrations.edit") ?>
-                      </a></td>
-                  </tr>
-                  <?php $totalStudents= $totalStudents+$classRegistration->number_of_students ?>
-              <?php endforeach; ?>
-              <td colspan="2"><?= lang('ClassRegistrations.total_number_of_Students') ?></td>
-              <td style="text-align: center; vertical-align: middle;"><?= $totalStudents ?></td>
-
-          </tbody>
-      </table>
-
-
-        <?= $pager->links() ?>
-
-    <?php else: ?>
 
         <p><?= lang('ClassRegistrations.no_classRegistrations_found') ?>.</p>
 

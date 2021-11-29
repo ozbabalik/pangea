@@ -3,6 +3,7 @@
 <?= $this->section('title') ?><?= lang('AdminUsers.edit_user') ?><?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
+<?php $currentPage='users' ?>
 
 <h1 class="title"><?= lang('AdminUsers.edit_user') ?></h1>
 
@@ -19,14 +20,14 @@
     <?= form_open("/admin/users/update/" . $user->id) ?>
 
         <?= $this->include('Admin/Users/form') ?>
-        
+
         <div class="field is-grouped">
             <div class="control">
-                <button class="button is-primary"><?= lang('AdminUsers.save') ?></button>
+                <button class="btn btn-outline-success"><?= lang('AdminUsers.save') ?></button>
             </div>
-            
+
             <div class="control">
-                <a class="button" href="<?= site_url("/admin/users/show/" . $user->id) ?>"><?= lang('AdminUsers.cancel') ?></a>
+                <a class="btn-outline-secondary" href="<?= site_url("/admin/users/show/" . $user->id) ?>"><?= lang('AdminUsers.cancel') ?></a>
             </div>
         </div>
 

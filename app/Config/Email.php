@@ -9,12 +9,12 @@ class Email extends BaseConfig
 	/**
 	 * @var string
 	 */
-	public $fromEmail = 'sender@example.com';
+	public $fromEmail = 'anmeldung@pangea-wettbewerb.at';
 
 	/**
 	 * @var string
 	 */
-	public $fromName = 'Task application';
+	public $fromName = 'Pangea Mathematikwettbewerb';
 
 	/**
 	 * @var string

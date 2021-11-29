@@ -22,8 +22,24 @@ class ClassRegistrations extends BaseController
 
 		return view("ClassRegistrations/index", [
 			'classRegistrations' => $data,
-            'pager' => $this->model->pager
+            'pager' => $this->model->pager, 'currentPage'=>'classRegistrations'
 		]);
+	}
+
+	public function list($id=null)
+	{
+		if($this->current_user->is_admin) {
+			$data = $this->model->paginateClassRegistrationsByUserId($id);
+
+			return view("Admin/Users/ClassRegistrations/index", [
+				'classRegistrations' => $data,
+	            'pager' => $this->model->pager, 'currentPage'=>'classRegistrations'
+			]);
+		} else {
+
+			return redirect()->back();
+		}
+
 	}
 
 	public function show($id)
@@ -31,7 +47,7 @@ class ClassRegistrations extends BaseController
         $classRegistration = $this->getClassRegistrationOr404($id);
 
 		return view('ClassRegistrations/show', [
-            'classRegistration' => $classRegistration
+            'classRegistration' => $classRegistration, 'currentPage'=>'classRegistrations'
         ]);
 	}
 
@@ -40,7 +56,7 @@ class ClassRegistrations extends BaseController
         $classRegistration = new ClassRegistration;
 
 		return view('ClassRegistrations/new', [
-		    'classRegistration' => $classRegistration
+		    'classRegistration' => $classRegistration, 'currentPage'=>'classRegistrations'
         ]);
 	}
 
@@ -52,7 +68,7 @@ class ClassRegistrations extends BaseController
 
 		if ($this->model->insert($classRegistration)) {
 
-			return redirect()->to("/ClassRegistrations/show/{$this->model->insertID}")
+			return redirect()->to("/ClassRegistrations")
                              ->with('info', lang('ClassRegistrations.create_successful'));
 
         } else {
@@ -69,7 +85,7 @@ class ClassRegistrations extends BaseController
 		$classRegistration = $this->getClassRegistrationOr404($id);
 
 		return view('ClassRegistrations/edit', [
-            'classRegistration' => $classRegistration
+            'classRegistration' => $classRegistration, 'currentPage'=>'classRegistrations'
         ]);
 	}
 
@@ -113,11 +129,11 @@ class ClassRegistrations extends BaseController
             $this->model->delete($id);
 
 			return redirect()->to('/ClassRegistrations')
-                             ->with('info', lang('ClassRegistrations.deleted'));
+                      	->with('info', lang('ClassRegistrations.deleted'));
 		}
 
 		return view('ClassRegistrations/delete', [
-            'classRegistration' => $classRegistration
+            'classRegistration' => $classRegistration, 'currentPage'=>'classRegistrations'
         ]);
 	}
 

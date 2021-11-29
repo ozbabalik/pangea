@@ -5,6 +5,7 @@
 <?= $this->section('content') ?>
 
 <h1 class="title"><?= lang('ClassRegistrations.edit_classRegistration') ?></h1>
+<?php $currentPage='classRegistration' ?>
 
 <?php if (session()->has('errors')): ?>
     <ul>

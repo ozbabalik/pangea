@@ -8,20 +8,25 @@ class Users extends \App\Controllers\BaseController
 {
     private $model;
 
+    private $classRegistrationsModel;
 
     public function __construct()
     {
         $this->model = new \App\Models\UserModel;
+        $this->classRegistrationsModel = new \App\Models\ClassRegistrationModel;
     }
 
     public function index()
 	{
         $users = $this->model->orderBy('id')
-                             ->paginate(5);
+                             ->paginate(10);
+        $classRegistrationsArray = $this->classRegistrationsModel->get()->getResult();
+        $classRegistrations = $this->classRegistrationsModel;
 
 		return view('Admin/Users/index', [
-            'users' => $users,
-            'pager' => $this->model->pager
+            'users' => $users, 'classRegistrations' => $classRegistrations,
+            'classRegistrationsArray' => $classRegistrationsArray,
+            'pager' => $this->model->pager, 'currentPage'=>'users'
         ]);
     }
 
@@ -30,7 +35,7 @@ class Users extends \App\Controllers\BaseController
         $user = $this->getUserOr404($id);
 
 		return view('Admin/Users/show', [
-            'user' => $user
+            'user' => $user, 'currentPage'=>'users'
         ]);
 	}
 
@@ -39,7 +44,7 @@ class Users extends \App\Controllers\BaseController
         $user = new User;
 
 		return view('Admin/Users/new', [
-		    'user' => $user
+		    'user' => $user, 'currentPage'=>'users'
         ]);
 	}
 
@@ -67,7 +72,7 @@ class Users extends \App\Controllers\BaseController
 		$user = $this->getUserOr404($id);
 
 		return view('Admin/Users/edit', [
-            'user' => $user
+            'user' => $user, 'currentPage'=>'users'
         ]);
 	}
 
@@ -123,7 +128,7 @@ class Users extends \App\Controllers\BaseController
 		}
 
 		return view('Admin/Users/delete', [
-            'user' => $user
+            'user' => $user, 'currentPage'=>'users'
         ]);
 	}
 
@@ -140,4 +145,13 @@ class Users extends \App\Controllers\BaseController
 
 		return $user;
 	}
+
+  public function classRegistrations($id=null){
+    $data = $this->classRegistrationsModel->paginateClassRegistrationsByUserId($id);
+
+		return view("ClassRegistrations/index", [
+			'classRegistrations' => $data,
+            'pager' => $this->classRegistrationsModel->pager
+		]);
+  }
 }

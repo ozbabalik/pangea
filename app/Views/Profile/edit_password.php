@@ -13,7 +13,7 @@
         <?php endforeach; ?>
     </ul>
 <?php endif ?>
-
+<?php $currentPage='profile' ?>
 <div class="container">
 
     <?= form_open("/profile/updatepassword") ?>
@@ -22,17 +22,17 @@
             <label class="label" for="current_password"><?= lang('Profile.current_password') ?></label>
             <input class="input" type="password" name="current_password">
         </div>
-        
+
         <div class="field">
             <label class="label" for="password"><?= lang('Profile.new_password') ?></label>
             <input class="input" type="password" name="password">
         </div>
-        
+
         <div class="field">
             <label class="label" for="password_confirmation"><?= lang('Profile.repeat_new_password') ?></label>
             <input class="input" type="password" name="password_confirmation">
         </div>
-        
+
         <div class="field is-grouped">
             <div class="control">
                 <button class="button is-primary"><?= lang('Profile.save') ?></button>
@@ -48,12 +48,3 @@
 </div>
 
 <?= $this->endSection() ?>
-
-
-
-
-
-
-
-
-

@@ -3,7 +3,7 @@
 <?= $this->section('title') ?><?= lang('Home.title') ?><?= $this->endSection() ?>
 
 <?= $this->section("content") ?>
-
-    <h1 class="title"><?= lang('Home.welcome') ?></h1>
+<?php $currentPage='home'?>
+    <h1 class="h1"><?= lang('Home.welcome') ?></h1>
 
 <?= $this->endSection() ?>

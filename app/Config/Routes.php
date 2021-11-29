@@ -31,6 +31,7 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+//$routes->get('/sidebar', 'Home::sidebar');
 $routes->get('([a-z]{2})', 'Home::index/$1');
 
 $routes->group('{locale}', ['filter' => 'guest'], function($routes) {
@@ -48,6 +49,13 @@ $routes->group('{locale}', ['filter' => 'guest'], function($routes) {
     $routes->get('password/reset/(:alphanum)', 'Password::reset/$1');
     $routes->post('password/processreset/(:alphanum)', 'Password::processReset/$1');
     $routes->get('password/resetsuccess', 'Password::resetSuccess');
+});
+
+$routes->group('admin', function ($routes) {
+    $routes->add('users', 'Admin\Users::index');
+    $routes->add('users/classRegistrations/(:any)', 'Admin\Users::classRegistrations/$1');
+		$routes->add('users/classRegistrations', 'Admin\Users::classRegistrations');
+
 });
 
 $routes->get('/logout', 'Login::delete');

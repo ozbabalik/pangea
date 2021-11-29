@@ -9,7 +9,7 @@
 
 
 <div class="container">
-    <div class="col-10">
+
         <div class="card">
         <h1 class="card-header"><?= lang('Signup.title') ?></h1>
         <div clas="row">
@@ -26,7 +26,7 @@
         <!--form action="/$locale/signup/create" method="post" class="row g-3" style='padding-top: 20px'-->
         <!--form class="row g-3"-->
               <?= form_open("/$locale/signup/create", $attributes) ?>
-              <div class="form-group row">
+              <div class="row mb-3">
                 <div class="col-md-6">
                   <?php $salutations=array(''=>lang('Anrede'), 'male'=>lang('Signup.male'), 'female'=>lang('Signup.female'), 'others'=>lang('Signup.others')); ?>
                   <!--label class="form-label"  for="salutation"><!?= lang('Signup.salutation') ?></label-->
@@ -38,7 +38,7 @@
                 </div>
               </div>
 
-              <div class="form-group row">
+              <div class="row mb-3">
                 <div class="col-md-6">
                   <!--label class="form-label" for="name"><!?= lang('Signup.name') ?></label-->
                       <input class="form-control" type="text" name="name" id="name" value="<?= old('name') ?>" placeholder="<?= lang('Signup.name') ?>" required>
@@ -49,7 +49,7 @@
                 </div>
               </div>
 
-              <div class="form-group row">
+              <div class="row mb-3">
                 <div class="col-md-4">
                   <!--label class="label" for="email"><!?= lang('Signup.email') ?></label-->
                   <input class="form-control" type="text" name="email" id="email" value="<?= old('email') ?>" placeholder="<?= lang('Signup.email') ?>" required>
@@ -64,11 +64,11 @@
                 </div>
               </div>
 
-              <div class="form-group row">
+              <div class="row mb-3">
                 <h4 class="heading">Informationen über Ihre Schule</h4>
               </div>
 
-              <div class="form-group row">
+              <div class="row mb-3">
                 <div class="col-md-6">
                   <!--label class="form-label" for="teacher_phone"><!?= lang('Signup.teacher_phone') ?></label-->
                       <input class="form-control" type="text" name="teacher_phone" id="teacher_phone" value="<?= old('teacher_phone') ?>" placeholder="<?= lang('Signup.teacher_phone') ?>" required>
@@ -79,7 +79,7 @@
                 </div>
               </div>
 
-              <div class="form-group row">
+              <div class="row mb-3">
                 <div class="col-md-6">
                   <!--label class="form-label" for="school_name"><!?= lang('Signup.school_name') ?></label-->
                       <input class="form-control" type="text" name="school_name" id="school_name" value="<?= old('school_name') ?>" placeholder="<?= lang('Signup.school_name') ?>" required>
@@ -98,7 +98,7 @@
                 </div>
               </div>
 
-              <div class="form-group row">
+              <div class="row mb-3">
                 <div class="col-md-9">
                   <!--label for="school_street" class="form-label"><!?= lang('Signup.school_street') ?></label-->
                   <input class="form-control" type="text" id="school_street" name="school_street" value="<?= old('school_street') ?>" placeholder="<?= lang('Signup.school_street') ?>" required>
@@ -109,7 +109,7 @@
                 </div>
               </div>
 
-              <div class="form-group row">
+              <div class="row mb-3">
                 <div class="col-md-3">
                   <!--label for="zip" class="form-label"><!?= lang('Signup.zip') ?></label-->
                   <input class="form-control" type="text" id="zip" name="school_zip" value="<?= old('zip') ?>" placeholder="<?= lang('Signup.zip') ?>" required>
@@ -127,31 +127,31 @@
                 </div>
               </div>
 
-              <div class="form-group row">
+              <div class="row mb-1">
                 <div class="col-md-12">
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="tou_confirmed" name="tou_confirmed" value="1">
                     <label class="form-check-label" for="tou_confirmed">
-                      Ich habe die <a target="_blank" href="http://www.pangea-wettbewerb.at/agb/"><strong>AGBs</strong></a> gelesen und akzeptiert
+                      Ich habe die <a target="_blank" href="http://www.pangea-wettbewerb.at/agb/"><strong style="color:#0d6efd;">AGBs</strong></a> gelesen und akzeptiert
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div class="form-group row">
+              <div class="row mb-3">
                 <div class="col-md-12">
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="privacy_policy" name="privacy_policy" value="1">
                     <label class="form-check-label" for="privacy_policy">
-                      Ich habe die <a target="_blank" href="http://www.pangea-wettbewerb.at/datenschutz/"><strong>Datenschutzerklärung</strong></a> gelesen und akzeptiert
+                      Ich habe die <a target="_blank" href="http://www.pangea-wettbewerb.at/datenschutz/"><strong style="color:#0d6efd;">Datenschutzerklärung</strong></a> gelesen und akzeptiert
                     </label>
                   </div>
                 </div>
               </div>
 
-              <div class="form-group row">
+              <div class="row mb-3 ">
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-outline-primary"><?= lang('Signup.sign_up') ?></button>
+                    <button type="submit" class="btn btn-outline-success"><?= lang('Signup.sign_up') ?></button>
                     <a class="btn btn-outline-secondary" href="<?= site_url("/") ?>"><?= lang('Signup.cancel') ?></a>
                 </div>
               </div>
@@ -160,7 +160,7 @@
 
           </div>
         </div>
-      </div>
+
 </div>
 
 

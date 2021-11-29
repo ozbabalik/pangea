@@ -21,12 +21,11 @@ class Signup extends BaseController
 
         if ($model->insert($user)) {
 
-          //  $this->sendActivationEmail($user);
+        $this->sendActivationEmail($user);
   dd($this->request->getPost());
             return redirect()->to("/{$this->locale}/signup/success");
 
         } else {
-        //  dd($this->request->getPost());
 
             return redirect()->back()
                              ->with('errors', $model->errors())

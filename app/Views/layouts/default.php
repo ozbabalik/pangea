@@ -1,90 +1,93 @@
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= $this->renderSection("title") ?></title>
-    <link rel="stylesheet" href="<?php echo base_url('/css/bootstrap.css')?>" type="text/css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="<?php echo base_url('/js/bootstrap.js')?>"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+        <!-- Custom styles for this template -->
+      <link href="/css/sidebar_style.css" rel="stylesheet" />
+
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
-<section class="section">
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+  </symbol>
+  <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+  </symbol>
+  <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+  </symbol>
+  </svg>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" role="navigation" aria-label="main navigation">
 
-        <div class="container-fluid">
+      <?=view('layouts/sidebar.php') ?>
 
-            <div class="collapse navbar-collapse">
-                <div class="navbar-nav">
-                <a class="nav-link active" href="<?= site_url('/') ?>"><?= lang('App.nav.home') ?></a>
+  <main class="container mt-4">
+      <section class="section ps-4">
 
-                <a class="nav-link" href="<?= site_url('/en') ?>">English</a>
 
-                <a class="nav-link" href="<?= site_url('/de') ?>">Deutsch</a>
+
+
+          <!-- toggler -->
+          <button id="sidebarCollapse" class="float-end" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <div class="row">
+            <div class="container col-md-6">
+            <?php if (session()->has('warning')): ?>
+              <div class="alert alert-warning d-flex align-items-center" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Warning:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                  <?= session('warning') ?>
               </div>
+          <?php endif; ?>
+
+          <?php if (session()->has('info')): ?>
+              <div class="alert alert-primary d-flex align-items-center" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
+
+                  <?= session('info') ?>
+              </div>
+          <?php endif; ?>
+
+          <?php if (session()->has('error')): ?>
+
+              <div class="alert alert-danger d-flex align-items-center" role="alert">
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+                  <?= session('error') ?>
+              </div>
+          <?php endif; ?>
+        </div>
+        </div>
+
+
+          <?= $this->renderSection("content") ?>
+
+      </section>
+    </main>
+    <footer class="container text-muted border-top mt-auto">
+          <div class="row">
+            <div class="col p-4">
+            Copyright All rights reserved | Pangea-Mathematikwettbewerb &copy; <?php echo date("Y"); ?>
             </div>
+          </div>
+      </footer>
 
-            <div class="navbar-nav"">
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 
-                <?php if (current_user()): ?>
-
-                    <div class="navbar-item">
-                        <?= lang('App.nav.hello') ?>, <?= esc(current_user()->name) ?>
-                    </div>
-
-                    <a class="nav-link" href="<?= site_url("/profile/show") ?>"><?= lang('App.nav.profile') ?></a>
-
-                    <?php if (current_user()->is_admin): ?>
-
-                        <a class="nav-link" href="<?= site_url("/admin/users") ?>"><?= lang('App.nav.users') ?></a>
-
-                    <?php endif; ?>
-
-                    <a class="nav-link" href="<?= site_url("/tasks") ?>"><?= lang('App.nav.tasks') ?></a>
-
-                    <a class="nav-link" href="<?= site_url("/logout") ?>"><?= lang('App.nav.logout') ?></a>
-
-                <?php else: ?>
-
-                    <a class="nav-link" href="<?= site_url("/$locale/signup") ?>"><?= lang('App.nav.signup') ?></a>
-
-                    <a class="nav-link" href="<?= site_url("/$locale/login") ?>"><?= lang('App.nav.login') ?></a>
-
-                <?php endif; ?>
-
-            </div>
-        </div>
-    </nav>
-
-    <?php if (session()->has('warning')): ?>
-        <div class="notification is-warning is-light">
-            <button class="delete"></button>
-            <?= session('warning') ?>
-        </div>
-    <?php endif; ?>
-
-    <?php if (session()->has('info')): ?>
-        <div class="notification is-info is-light">
-            <button class="delete"></button>
-            <?= session('info') ?>
-        </div>
-    <?php endif; ?>
-
-    <?php if (session()->has('error')): ?>
-        <div class="notification is-danger is-light">
-            <button class="delete"></button>
-            <?= session('error') ?>
-        </div>
-    <?php endif; ?>
-
-    <?= $this->renderSection("content") ?>
-
-</section>
-
-<script src="<?= site_url('/js/app.js') ?>"></script>
+    <!-- Custom scripts -->
+    <script src="/js/sidebar_script.js"></script>
 
 </body>
 </html>

@@ -34,7 +34,16 @@ class ClassRegistrationModel extends \CodeIgniter\Model
     {
         return $this->where('user_id', $id)
                     ->orderBy('created_at')
-                    ->paginate(5);
+                    ->paginate(10);
+    }
+
+    public function paginateClassRegistrations()
+    {
+        return $this->limit()
+                    ->groupBy('class')
+                    ->orderBy('class', 'DESC')
+                    ->paginate(10);
+                    //->paginate(10);
     }
 
     public function getClassRegistrationByUserId($id, $user_id)
@@ -43,6 +52,19 @@ class ClassRegistrationModel extends \CodeIgniter\Model
                     ->where('user_id', $user_id)
                     ->first();
     }
+
+    public function getSumOfStudentsByUserID($user_id){
+      $registrations=$this->where('user_id', $user_id)
+                            ->get()->getResult();
+
+      $reg= array_column($registrations, 'number_of_students');
+    //  $key='number_of_students';
+    //  $sum = array_sum(array_column($registrations,$key));
+
+                  return array_sum($reg);
+    }
+
+    
 
     public function search($term, $user_id)
     {
